@@ -1,0 +1,32 @@
+{
+  "rulesVersion": "2",
+  "collections": [
+    {
+      "name": "users",
+      "path": "users/{userId}",
+      "description": "User profile data",
+      "schema": {
+        "uid": "string",
+        "displayName": "string",
+        "email": "string"
+      },
+      "permissions": {
+        "read": "request.auth != null && request.auth.uid == userId",
+        "write": "request.auth != null && request.auth.uid == userId"
+      }
+    },
+    {
+      "name": "chats",
+      "path": "users/{userId}/chats/{chatId}",
+      "description": "User chat sessions",
+      "schema": {
+        "createdAt": "timestamp",
+        "messages": "array"
+      },
+      "permissions": {
+        "read": "request.auth != null && request.auth.uid == userId",
+        "write": "request.auth != null && request.auth.uid == userId"
+      }
+    }
+  ]
+}
